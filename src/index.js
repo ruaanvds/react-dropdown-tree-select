@@ -82,7 +82,7 @@ class DropdownTreeSelect extends Component {
 
   initNewProps = ({ data, mode, showDropdown, showPartiallySelected, searchPredicate }) => {
     this.treeManager = new TreeManager({
-      data,
+      data: data !== null && data !== undefined ? data : [],
       mode,
       showPartiallySelected,
       rootPrefixId: this.clientId,
@@ -125,6 +125,9 @@ class DropdownTreeSelect extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.initNewProps(nextProps)
+    if (nextProps.data === null || nextProps.data === undefined) {
+      this.initialData = []
+    }
     if (!this.props.data.length && nextProps.data.length) {
       this.initialData = nextProps.data
 

@@ -1,6 +1,6 @@
 // tslint:disable:interface-name
 declare module 'react-hierarchical-select' {
-  import * as React from 'react'
+  import React from 'react'
 
   export type TreeData = Object | TreeNodeProps[]
 
