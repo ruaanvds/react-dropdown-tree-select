@@ -133,7 +133,7 @@ class DropdownTreeSelect extends Component {
 
       if (this.props.value) {
         const matchedElements = this.getNodeBySearchTerm(this.props.value)
-        if (matchedElements) {
+        if (matchedElements && matchedElements.size > 0) {
           const domElement = Array.from(matchedElements.values()).pop()
           this.setFocusedNode(domElement._id)
           this.setState({
@@ -260,6 +260,10 @@ class DropdownTreeSelect extends Component {
     })
 
     this.props.onChange(this.treeManager.getNodeById(id), tags)
+
+    // Triggers close
+    this.keepDropdownActive = false
+    this.handleClick()
   }
 
   onAction = (nodeId, action) => {
