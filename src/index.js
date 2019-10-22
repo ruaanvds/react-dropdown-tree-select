@@ -82,7 +82,7 @@ class DropdownTreeSelect extends Component {
 
   initNewProps = ({ data, mode, showDropdown, showPartiallySelected, searchPredicate }) => {
     this.treeManager = new TreeManager({
-      data,
+      data: data !== null && data !== undefined ? data : [],
       mode,
       showPartiallySelected,
       rootPrefixId: this.clientId,
@@ -125,12 +125,15 @@ class DropdownTreeSelect extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.initNewProps(nextProps)
+    if (nextProps.data === null || nextProps.data === undefined) {
+      this.initialData = []
+    }
     if (!this.props.data.length && nextProps.data.length) {
       this.initialData = nextProps.data
 
       if (this.props.value) {
         const matchedElements = this.getNodeBySearchTerm(this.props.value)
-        if (matchedElements) {
+        if (matchedElements && matchedElements.size > 0) {
           const domElement = Array.from(matchedElements.values()).pop()
           this.setFocusedNode(domElement._id)
           this.setState({
@@ -257,6 +260,10 @@ class DropdownTreeSelect extends Component {
     })
 
     this.props.onChange(this.treeManager.getNodeById(id), tags)
+
+    // Triggers close
+    this.keepDropdownActive = false
+    this.handleClick()
   }
 
   onAction = (nodeId, action) => {
