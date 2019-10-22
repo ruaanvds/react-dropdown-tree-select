@@ -64,10 +64,6 @@ class Input extends PureComponent {
     this.setState({ value: e.target.value })
   }
 
-  componentWillReceiveProps(prevProps, prevState) {
-    this.setState({ value: this.props.value })
-  }
-
   render() {
     const {
       tags,
