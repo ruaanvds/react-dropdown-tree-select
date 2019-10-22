@@ -1,7 +1,5 @@
 // tslint:disable:interface-name
 declare module 'react-hierarchical-select' {
-  import React from 'react'
-
   export type TreeData = Object | TreeNodeProps[]
 
   export type Mode = 'multiSelect' | 'simpleSelect' | 'radioSelect' | 'hierarchical'
@@ -153,7 +151,6 @@ declare module 'react-hierarchical-select' {
     tree: TreeNode[]
     tags: TreeNode[]
   }
-
   export default class DropdownTreeSelect extends React.Component<DropdownTreeSelectProps, DropdownTreeSelectState> {
     node: HTMLDivElement
     searchInput: HTMLInputElement
