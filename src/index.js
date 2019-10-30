@@ -364,7 +364,6 @@ class DropdownTreeSelect extends Component {
             { 'simple-select': mode === 'simpleSelect' },
             { 'radio-select': mode === 'radioSelect' }
           )}
-          onBlur={e => this.props.onBlur()}
         >
           <Trigger onTrigger={this.onTrigger} showDropdown={showDropdown} {...commonProps} tags={tags}>
             <Input
@@ -405,6 +404,7 @@ class DropdownTreeSelect extends Component {
                   onNodeNavigate={this.props.onNodeNavigate}
                   scrollHeight={this.props.scrollHeight}
                   scrollToElement={this.state.scrollToElement}
+                  onBlur={this.props.onBlur}
                   {...commonProps}
                 />
               )}
