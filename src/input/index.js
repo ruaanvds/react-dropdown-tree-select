@@ -58,6 +58,14 @@ class Input extends PureComponent {
     }
   }
 
+  componentDidUpdate() {
+    if (this.props.value) {
+      this.setState({
+        value: this.props.value,
+      })
+    }
+  }
+
   handleInputChange = e => {
     e.persist()
     this.delayedCallback(e)

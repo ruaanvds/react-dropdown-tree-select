@@ -128,7 +128,7 @@ class DropdownTreeSelect extends Component {
     if (nextProps.data === null || nextProps.data === undefined) {
       this.initialData = []
     }
-    if (!this.props.data.length && nextProps.data.length) {
+    if (this.props.data.length > 0 && nextProps.data.length > 0) {
       this.initialData = nextProps.data
 
       if (this.props.value) {
@@ -404,6 +404,7 @@ class DropdownTreeSelect extends Component {
                   onNodeNavigate={this.props.onNodeNavigate}
                   scrollHeight={this.props.scrollHeight}
                   scrollToElement={this.state.scrollToElement}
+                  onBlur={this.props.onBlur}
                   {...commonProps}
                 />
               )}

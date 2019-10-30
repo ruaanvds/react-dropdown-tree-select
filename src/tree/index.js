@@ -34,6 +34,7 @@ class Tree extends Component {
     highlightSearch: PropTypes.bool,
     onNodeHover: PropTypes.func,
     scrollHeight: PropTypes.number,
+    onBlur: PropTypes.func,
   }
 
   static defaultProps = {
@@ -161,7 +162,7 @@ class Tree extends Component {
   }
 
   render() {
-    const { searchModeOn } = this.props
+    const { searchModeOn, onBlur } = this.props
 
     return (
       <ul className={`root ${searchModeOn ? 'searchModeOn' : ''}`} ref={this.setNodeRef} {...this.getAriaAttributes()}>
@@ -174,6 +175,7 @@ class Tree extends Component {
             loader={<span className="searchLoader">Loading...</span>}
             scrollableTarget={this.state.scrollableTarget}
             height={this.props.scrollHeight}
+            onBlur={onBlur}
           >
             {this.state.items}
           </InfiniteScroll>
