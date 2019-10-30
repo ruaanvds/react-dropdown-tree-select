@@ -128,7 +128,7 @@ class DropdownTreeSelect extends Component {
     if (nextProps.data === null || nextProps.data === undefined) {
       this.initialData = []
     }
-    if (!this.props.data.length && nextProps.data.length) {
+    if (this.props.data.length > 0 && nextProps.data.length > 0) {
       this.initialData = nextProps.data
 
       if (this.props.value) {
@@ -364,6 +364,7 @@ class DropdownTreeSelect extends Component {
             { 'simple-select': mode === 'simpleSelect' },
             { 'radio-select': mode === 'radioSelect' }
           )}
+          onBlur={e => this.props.onBlur()}
         >
           <Trigger onTrigger={this.onTrigger} showDropdown={showDropdown} {...commonProps} tags={tags}>
             <Input
